@@ -16,19 +16,30 @@ public class App {
 
         DateTimeFormatter padrao = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
+        List<Map<String, String>> listaPessoaIdade = new ArrayList<>();
+        listaPessoaIdade = calculaIdade(listaPessoas, padrao);
+
+        System.out.println("Lista de idades");
+        for (Map<String, String> dado : listaPessoaIdade) {
+            System.out.println(dado);
+        }
+
     }
 
-    public static Map<String, String> calculaIdade(List<Map<String, String>> listaPessoas, DateTimeFormatter padrao) {
+    public static List<Map<String, String>> calculaIdade(List<Map<String, String>> listaPessoas,
+            DateTimeFormatter padrao) {
 
-        LocalDate dataAtual, dataAComparar, idade;
+        LocalDate dataAtual, dataAComparar;
         dataAtual = LocalDate.now();
-        Map<String, String> listaPessoaIdade;
+        List<Map<String, String>> listaPessoaIdade = new ArrayList<>();
         for (Map<String, String> dado : listaPessoas) {
 
             dataAComparar = LocalDate.parse(dado.get("nascimento"), padrao);
-            Period period = Period.between(dataAComparar, dataAtual);
+            Period idade = Period.between(dataAComparar, dataAtual);
+            String pessoa = dado.get("nome");
+            listaPessoaIdade.add(Map.of("nome", pessoa, "idade", String.format("%d", idade.getYears())));
 
         }
-        return null;
+        return listaPessoaIdade;
     }
 }
