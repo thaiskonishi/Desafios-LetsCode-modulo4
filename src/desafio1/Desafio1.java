@@ -1,10 +1,12 @@
+package desafio1;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class App {
+public class Desafio1 {
     public static void main(String[] args) throws Exception {
         List<Map<String, String>> listaPessoas = new ArrayList<>();
         listaPessoas.add(Map.of("nome", "Joaquim", "nascimento", "11-12-65"));
